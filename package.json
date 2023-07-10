@@ -1,0 +1,28 @@
+{
+  "name": "renode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npm-run-all --parallel start:**",
+    "start:server": "cd server && nodemon --exec babel-node server",
+    "start:client": "cd client && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.2",
+    "puppeteer": "^20.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/node": "^7.22.5",
+    "http-proxy-middleware": "^2.0.6",
+    "nodemon": "^2.0.22",
+    "npm-run-all": "^4.1.5"
+  }
+}

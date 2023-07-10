@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
-  Box,
+  WeatherInfo,
   Container,
   MaxTemp,
   MinMax,
@@ -114,29 +114,25 @@ function Home() {
     getImage();
   }, []);
 
+  console.log(image);
+
   return (
     <Wrraper>
       <Container>
-        <ImgBox>
-          <Img />
-          <Img />
-          <Img />
-          <Img />
-          <Img />
-          <Img />
-          <Img />
-          <Img />
-          <Img />
-        </ImgBox>
-        <Box>
+        <WeatherInfo>
           <Title>{weatherInfo.name}</Title>
-          <Temperature>{weatherInfo.main?.temp}</Temperature>
+          <Temperature>{weatherInfo.main?.temp}°</Temperature>
           <Sky>{weatherInfo.sky}</Sky>
           <MinMax>
-            <MaxTemp>최고:{weatherInfo.main?.temp_max}</MaxTemp>
-            <MinTemp>최저:{weatherInfo.main?.temp_min}</MinTemp>
+            <MaxTemp>최고:{weatherInfo.main?.temp_max}°</MaxTemp>
+            <MinTemp>최저:{weatherInfo.main?.temp_min}°</MinTemp>
           </MinMax>
-        </Box>
+        </WeatherInfo>
+        <ImgBox>
+          {image.map((img, idx) => {
+            return <Img key={idx} src={img} />;
+          })}
+        </ImgBox>
       </Container>
     </Wrraper>
   );

@@ -9,41 +9,47 @@ export const Container = styled.div`
   background-size: 70%;
   display: flex;
   margin: 0 auto;
-`;
-export const ImgBox = styled.div`
-  background-color: blue;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-width: 400px;
-  height: 100vh;
-  position: absolute;
   justify-content: center;
-  align-items: center;
+  background-color: skyblue;
+  flex-direction: column;
 `;
-
-export const Img = styled.div`
-  background-color: red;
-  width: 100px;
-  height: 170px;
-  border-radius: 20px;
-`;
-export const Box = styled.div`
+export const WeatherInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  gap: 10px;
-  position: relative;
+  color: white;
+  padding-top: 15px;
 `;
+export const ImgBox = styled.div`
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: auto;
+`;
+
+export const Img = styled.img`
+  display: flex;
+  background-color: white;
+  width: 110px;
+  height: 150px;
+  background-size: cover;
+  border-radius: 20px;
+`;
+
 export const Title = styled.div`
   font-size: 25px;
 `;
 export const Temperature = styled.div`
   font-size: 50px;
+  margin-left: 10px;
 `;
 export const Sky = styled.div``;
-export const MinMax = styled.div``;
+export const MinMax = styled.div`
+  display: flex;
+  gap: 30px;
+`;
 export const MinTemp = styled.div``;
 export const MaxTemp = styled.div``;

@@ -28,6 +28,9 @@ export const ImgBox = styled.div`
   justify-content: center;
   height: 100vh;
   overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Img = styled.img`

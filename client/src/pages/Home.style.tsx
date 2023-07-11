@@ -34,7 +34,7 @@ export const Img = styled.img`
   display: flex;
   background-color: white;
   width: 110px;
-  height: 150px;
+  height: auto;
   background-size: cover;
   border-radius: 20px;
 `;

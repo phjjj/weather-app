@@ -34,19 +34,42 @@ function Home() {
 
   const [image, setImage] = useState([]);
 
-  const getImage = async () => {
-    const data = await axios
-      .get("/api")
+  // 날씨
+  const getWeather = () => {
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=f85a8dbb90c63ca9d8b81463c62525a4`
+      )
+      .then((res) =>
+        setWeatherInfo({
+          name: res.data.name,
+          main: {
+            temp: Math.floor(res.data.main.temp - 273.15),
+            temp_max: Math.floor(res.data.main.temp_max - 273.15),
+            temp_min: Math.floor(res.data.main.temp_min - 273.15),
+          },
+          sky: res.data.weather[0].main,
+        })
+      )
+      .catch((err) => err);
+  };
+
+  // 이미지 받기
+  const getImage = () => {
+    const data = axios
+      .get("/api/home", { params: { weatherInfo } })
       .then((res) => setImage(res.data))
       .catch((err) => console.log(err));
     return data;
   };
 
+  // 위치받기
   const useGeolocation = () => {
     const [location, setLocation] = useState<locationType>({
       loaded: false,
       coordinates: { lat: 0, lng: 0 },
     });
+
     const onSuccess = (location: {
       coords: { latitude: number; longitude: number };
     }) => {
@@ -85,26 +108,7 @@ function Home() {
   const location = useGeolocation();
   const lat = location.coordinates?.lat;
   const lng = location.coordinates?.lng;
-
-  const getWeather = async () => {
-    const data = await axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=f85a8dbb90c63ca9d8b81463c62525a4`
-      )
-      .then((res) =>
-        setWeatherInfo({
-          name: res.data.name,
-          main: {
-            temp: Math.floor(res.data.main.temp - 273.15),
-            temp_max: Math.floor(res.data.main.temp_max - 273.15),
-            temp_min: Math.floor(res.data.main.temp_min - 273.15),
-          },
-          sky: res.data.weather[0].main,
-        })
-      )
-      .catch((err) => err);
-    return data;
-  };
+  console.log(lat, lng);
 
   useEffect(() => {
     getWeather();
@@ -114,8 +118,8 @@ function Home() {
     getImage();
   }, []);
 
-  console.log(image);
-
+  // 순서
+  // 위도경도받기 -> 날씨 -> 이미지
   return (
     <Wrraper>
       <Container>

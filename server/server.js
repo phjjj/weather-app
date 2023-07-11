@@ -1,8 +1,8 @@
 import express from "express";
-import test from "./Router/test.js";
+import rootRouter from "./routers/rootRouter.js";
 const app = express();
 
-app.use("/api", test);
+app.use("/api", rootRouter);
 
 const PORT = 4000;
 

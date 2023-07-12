@@ -14,19 +14,22 @@ import {
   Img,
 } from "./Home.style";
 
-interface locationType {
-  loaded: boolean;
-  coordinates?: { lat: number; lng: number };
-  error?: { code: number; message: string };
-}
 interface weatherInfoType {
+  loaded: boolean;
   name?: string;
   main?: { temp: number; temp_max: number; temp_min: number };
   sky?: string;
 }
 
+interface locationType {
+  loaded: boolean;
+  coordinates?: { lat: number; lng: number };
+  error?: { code: number; message: string };
+}
+
 function Home() {
   const [weatherInfo, setWeatherInfo] = useState<weatherInfoType>({
+    loaded: false,
     name: "",
     main: { temp: 0, temp_max: 0, temp_min: 0 },
     sky: "",
@@ -38,10 +41,11 @@ function Home() {
   const getWeather = () => {
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=f85a8dbb90c63ca9d8b81463c62525a4`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${location.coordinates?.lat}&lon=${location.coordinates?.lng}&appid=f85a8dbb90c63ca9d8b81463c62525a4`
       )
       .then((res) =>
         setWeatherInfo({
+          loaded: true,
           name: res.data.name,
           main: {
             temp: Math.floor(res.data.main.temp - 273.15),
@@ -56,11 +60,10 @@ function Home() {
 
   // 이미지 받기
   const getImage = () => {
-    const data = axios
-      .get("/api/home", { params: { weatherInfo } })
+    axios
+      .get("/api/home")
       .then((res) => setImage(res.data))
       .catch((err) => console.log(err));
-    return data;
   };
 
   // 위치받기
@@ -104,19 +107,19 @@ function Home() {
 
     return location;
   };
-
   const location = useGeolocation();
-  const lat = location.coordinates?.lat;
-  const lng = location.coordinates?.lng;
-  console.log(lat, lng);
 
   useEffect(() => {
-    getWeather();
+    if (location.loaded) {
+      getWeather();
+    }
   }, [location]);
 
   useEffect(() => {
     getImage();
   }, []);
+
+  console.log("ss");
 
   // 순서
   // 위도경도받기 -> 날씨 -> 이미지

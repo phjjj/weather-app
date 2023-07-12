@@ -5,14 +5,24 @@ import puppeteer from "puppeteer";
 export const getImage = (req, res) => {
   {
     (async () => {
-      console.log(req.query);
+      // 월 정보
+      const month = new Date().getMonth() + 1;
       const browser = await puppeteer.launch({
         headless: "new",
       });
       const page = await browser.newPage();
 
-      //검색어
-      const searchArr = ["겨울옷", "겨울코디", "겨울패션", "겨울남자코디"];
+      let searchArr = [];
+
+      if (month >= 3 && month <= 5) {
+        searchArr = ["봄옷", "봄코디", "봄패션", "봄남자코디"];
+      } else if (month >= 6 && month <= 8) {
+        searchArr = ["여름옷", "여름코디", "여름패션", "여름남자코디"];
+      } else if (month >= 9 && month <= 11) {
+        searchArr = ["가을옷", "가을코디", "가을패션", "가을남자코디"];
+      } else if (month === 12 && month <= 2) {
+        searchArr = ["겨울옷", "겨울코디", "겨울패션", "겨울남자코디"];
+      }
 
       //랜덤함수
       const rand = (min, max) => {

@@ -119,8 +119,6 @@ function Home() {
     getImage();
   }, []);
 
-  console.log("ss");
-
   // 순서
   // 위도경도받기 -> 날씨 -> 이미지
   return (

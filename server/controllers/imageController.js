@@ -17,7 +17,7 @@ export const getImage = (req, res) => {
       if (month >= 3 && month <= 5) {
         searchArr = ["봄옷", "봄코디", "봄패션", "봄남자코디"];
       } else if (month >= 6 && month <= 8) {
-        searchArr = ["여름옷", "여름코디", "여름패션", "여름남자코디"];
+        searchArr = ["여름옷", "여름코디", "여름패션", "여름남자옷"];
       } else if (month >= 9 && month <= 11) {
         searchArr = ["가을옷", "가을코디", "가을패션", "가을남자코디"];
       } else if (month === 12 && month <= 2) {

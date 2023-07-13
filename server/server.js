@@ -3,8 +3,10 @@ dotenv.config();
 import express from "express";
 import rootRouter from "./routers/rootRouter.js";
 import path from "path";
+import cors from "cors";
 
 const app = express();
+app.use(cors({ origin: "*" }));
 // const __dirname = path.resolve();
 
 app.use("/api", rootRouter);

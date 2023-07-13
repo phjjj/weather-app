@@ -7,9 +7,7 @@
   "scripts": {
     "start": "npm-run-all --parallel start:**",
     "start:server": "cd server && nodemon --exec babel-node server",
-    "start:client": "cd client && npm start",
-    "dev": "parcel ./client/build/index.html",
-    "build": "parcel build ./client/build/index.html"
+    "start:client": "cd client && npm start"
   },
   "keywords": [],
   "author": "",

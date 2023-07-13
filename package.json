@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
     "start": "npm-run-all --parallel start:**",
     "start:server": "cd server && nodemon --exec babel-node server",
-    "start:client": "cd client && npm start"
+    "start:client": "cd client && npm start",
+    "dev": "parcel ./client/build/index.html",
+    "build": "parcel build ./client/build/index.html"
   },
   "keywords": [],
   "author": "",
@@ -23,10 +22,12 @@
     "puppeteer": "^20.8.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.5",
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
     "@babel/node": "^7.22.5",
     "http-proxy-middleware": "^2.0.6",
     "nodemon": "^2.0.22",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "parcel-bundler": "^1.12.5"
   }
 }

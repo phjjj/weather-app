@@ -134,9 +134,10 @@ function Home() {
           </MinMax>
         </WeatherInfo>
         <ImgBox>
-          {image.map((img, idx) => {
-            return <Img key={idx} src={img} />;
-          })}
+          {/* {image &&
+            image.map((img, idx) => {
+              return <Img key={idx} src={img} />;
+            })} */}
         </ImgBox>
       </Container>
     </Wrraper>

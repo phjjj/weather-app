@@ -69,7 +69,9 @@ function Home() {
   // 이미지 받기
   const getImage = () => {
     axios
-      .get("/api/home")
+      .get(
+        "http://ec2-43-201-72-126.ap-northeast-2.compute.amazonaws.com:4000/api/home"
+      )
       .then((res) => setImage({ loaded: true, img: res.data }))
       .catch((err) => console.log(err));
   };
@@ -130,8 +132,6 @@ function Home() {
     }
   }, []);
 
-  console.log(image.img);
-
   // 순서
   // 위도경도받기 -> 날씨 -> 이미지
   return (
@@ -147,10 +147,10 @@ function Home() {
           </MinMax>
         </WeatherInfo>
         <ImgBox>
-          {/* {image.loaded &&
+          {image.loaded &&
             image.img.map((img, idx) => {
               return <Img key={idx} src={img} />;
-            })} */}
+            })}
         </ImgBox>
       </Container>
     </Wrraper>

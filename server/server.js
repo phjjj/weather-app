@@ -6,7 +6,7 @@ import path from "path";
 import cors from "cors";
 
 const app = express();
-app.use(cors({ origin: "*" }));
+app.use(cors());
 // const __dirname = path.resolve();
 
 app.use("/api", rootRouter);

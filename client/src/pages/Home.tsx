@@ -69,9 +69,7 @@ function Home() {
   // 이미지 받기
   const getImage = () => {
     axios
-      .get(
-        "http://ec2-43-201-72-126.ap-northeast-2.compute.amazonaws.com:4000/api/home"
-      )
+      .get("https://jweather.site/api/home")
       .then((res) => setImage({ loaded: true, img: res.data }))
       .catch((err) => console.log(err));
   };

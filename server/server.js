@@ -7,14 +7,14 @@ import cors from "cors";
 
 const app = express();
 app.use(cors());
-// const __dirname = path.resolve();
-
 app.use("/api", rootRouter);
-// app.use(express.static(path.join(__dirname, "../client/build")));
+const __dirname = path.resolve();
 
-// app.get("*", function (res, req) {
-//   req.sendFile(path.join(__dirname, "../client/build/index.html"));
-// });
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.get("*", function (res, req) {
+  req.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 const PORT = process.env.PORT || 4000;
 

@@ -147,10 +147,10 @@ function Home() {
           </MinMax>
         </WeatherInfo>
         <ImgBox>
-          {image.loaded &&
+          {/* {image.loaded &&
             image.img.map((img, idx) => {
               return <Img key={idx} src={img} />;
-            })}
+            })} */}
         </ImgBox>
       </Container>
     </Wrraper>

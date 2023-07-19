@@ -6,6 +6,7 @@ export const getImage = (req, res) => {
   {
     (async () => {
       // 월 정보
+
       const month = new Date().getMonth() + 1;
       const browser = await puppeteer.launch({
         headless: "new",

@@ -27,6 +27,11 @@ interface locationType {
   error?: { code: number; message: string };
 }
 
+interface imageType {
+  loaded: boolean;
+  img: [];
+}
+
 function Home() {
   const [weatherInfo, setWeatherInfo] = useState<weatherInfoType>({
     loaded: false,
@@ -35,7 +40,10 @@ function Home() {
     sky: "",
   });
 
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState<imageType>({
+    loaded: false,
+    img: [],
+  });
 
   // 날씨
   const getWeather = () => {
@@ -61,8 +69,8 @@ function Home() {
   // 이미지 받기
   const getImage = () => {
     axios
-      .get("/api/home")
-      .then((res) => setImage(res.data))
+      .get("https://jweather.site/api/home")
+      .then((res) => setImage({ loaded: true, img: res.data }))
       .catch((err) => console.log(err));
   };
 
@@ -107,6 +115,7 @@ function Home() {
 
     return location;
   };
+
   const location = useGeolocation();
 
   useEffect(() => {
@@ -116,7 +125,9 @@ function Home() {
   }, [location]);
 
   useEffect(() => {
-    getImage();
+    if (!image.loaded) {
+      getImage();
+    }
   }, []);
 
   // 순서
@@ -134,9 +145,10 @@ function Home() {
           </MinMax>
         </WeatherInfo>
         <ImgBox>
-          {image.map((img, idx) => {
-            return <Img key={idx} src={img} />;
-          })}
+          {image.loaded &&
+            image.img.map((img, idx) => {
+              return <Img key={idx} src={img} />;
+            })}
         </ImgBox>
       </Container>
     </Wrraper>

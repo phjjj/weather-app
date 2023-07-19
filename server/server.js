@@ -6,7 +6,7 @@ import path from "path";
 
 const app = express();
 const __dirname = path.resolve();
-
+app.use(cors());
 app.use("/api", rootRouter);
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.get("/", function (res, req) {

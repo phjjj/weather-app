@@ -67,9 +67,11 @@ function Home() {
   };
 
   // 이미지 받기
+  const imgKey = process.env.REACT_APP_KEY;
+
   const getImage = () => {
     axios
-      .get("https://jweather.site/api/home")
+      .get(`www.jwether.site/api/${imgKey}`)
       .then((res) => setImage({ loaded: true, img: res.data }))
       .catch((err) => console.log(err));
   };
@@ -81,9 +83,7 @@ function Home() {
       coordinates: { lat: 0, lng: 0 },
     });
 
-    const onSuccess = (location: {
-      coords: { latitude: number; longitude: number };
-    }) => {
+    const onSuccess = (location: { coords: { latitude: number; longitude: number } }) => {
       setLocation({
         loaded: true,
         coordinates: {

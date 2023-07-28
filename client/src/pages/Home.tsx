@@ -71,7 +71,10 @@ function Home() {
 
   const getImage = () => {
     axios
-      .get(`www.jweather.site/api/${imgKey}`)
+      .get(
+        `https://jweather.site/api/${imgKey}
+`
+      )
       .then((res) => setImage({ loaded: true, img: res.data }))
       .catch((err) => console.log(err));
   };
